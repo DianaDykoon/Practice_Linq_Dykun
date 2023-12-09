@@ -57,7 +57,8 @@ namespace Practice_Linq
             // див. приклад як має бути виведено:
             foreach (var game in selectedGames)
             {
-                Console.WriteLine($"{game.Date:d.MM.yyyy} {game.Home_team} - {game.Away_team}, Score: {game.Home_score} - {game.Away_score}, Country: {game.Country}");
+                Console.WriteLine($"{game.Date:dd.MM.yyyy} {game.Home_team} - {game.Away_team}," +
+                    $" Score: {game.Home_score} - {game.Away_score}, Country: {game.Country}");
             }
         }
 
@@ -66,15 +67,19 @@ namespace Practice_Linq
         {
             //Query 2: Вивести Friendly матчі збірної Італії, які вона провела з 2020 року.  
 
-            var selectedGames = games; // Корегуємо запит !!!
+            var selectedGames = games.Where(p => p.Tournament == "Friendly" &&
+            (p.Away_team == "Italy" || p.Home_team == "Italy") && (p.Date.Year >= 2020)).ToList(); // Корегуємо запит !!!
 
 
             // Перевірка
             Console.WriteLine("\n======================== QUERY 2 ========================");
 
             // див. приклад як має бути виведено:
-
-
+            foreach (var game in selectedGames)
+            {
+                Console.WriteLine($"{game.Date:dd.MM.yyyy} {game.Home_team} - {game.Away_team}," +
+                    $" Score: {game.Home_score} - {game.Away_score}, Country: {game.Country}");
+            }
         }
 
         // Запит 3
