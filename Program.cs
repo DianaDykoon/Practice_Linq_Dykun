@@ -106,7 +106,8 @@ namespace Practice_Linq
         {
             //Query 4: Вивести всі матчі збірної Германії з 2018 року по 2020 рік (включно), в яких вона на виїзді програла.
 
-            var selectedGames = games.Where(p => p.Away_team == "Germany" && (p.Date.Year <= 2020 && p.Date.Year >= 2018) && (p.Away_score < p.Home_score)).ToList();   // Корегуємо запит !!!
+            var selectedGames = games.Where(p => p.Away_team == "Germany" &&
+            (p.Date.Year <= 2020 && p.Date.Year >= 2018) && (p.Away_score < p.Home_score)).ToList();   // Корегуємо запит !!!
 
 
             // Перевірка
@@ -118,7 +119,6 @@ namespace Practice_Linq
                 Console.WriteLine($"{game.Date:dd.MM.yyyy} {game.Home_team} - {game.Away_team}," +
                     $" Score: {game.Home_score} - {game.Away_score}, Country: {game.Country}");
             }
-
         }
 
         // Запит 5
@@ -127,14 +127,18 @@ namespace Practice_Linq
             //Query 5: Вивести всі кваліфікаційні матчі (UEFA Euro qualification), які відбулися у Києві чи у Харкові, а також за умови перемоги української збірної.
 
 
-            var selectedGames = games;  // Корегуємо запит !!!
+            var selectedGames = games.Where(p => p.Tournament == "UEFA Euro qualification" && (p.City == "Kharkiv" || p.City == "Kyiv") && (p.Home_score > p.Away_score)).ToList();  // Корегуємо запит !!!
 
 
             // Перевірка
             Console.WriteLine("\n======================== QUERY 5 ========================");
 
             // див. приклад як має бути виведено:
-
+            foreach (var game in selectedGames)
+            {
+                Console.WriteLine($"{game.Date:dd.MM.yyyy} {game.Home_team} - {game.Away_team}," +
+                    $" Score: {game.Home_score} - {game.Away_score}, City: {game.City}, Country: {game.Country}");
+            }
 
         }
 
