@@ -223,15 +223,18 @@ namespace Practice_Linq
         {
             //Query 10: Вивести з 5-го по 10-тий (включно) матчі Gold Cup, які відбулися у липні 2023 р.
 
-            var selectedGames = games;    // Корегуємо запит !!!
+            var selectedGames = games.Where(s => s.Tournament == "Gold Cup" && 
+            (s.Date.Year == 2023 && s.Date.Month == 7)).Skip(4).Take(6).ToList();    // Корегуємо запит !!!
 
             // Перевірка
             Console.WriteLine("\n======================== QUERY 10 ========================");
 
             // див. приклад як має бути виведено:
-
-
+            foreach (var game in selectedGames)
+            {
+                Console.WriteLine($"{game.Date:dd.MM.yyyy} {game.Home_team} - {game.Away_team}," +
+                    $" Score: {game.Home_score} - {game.Away_score}, Country: {game.Country}");
+            }
         }
-
     }
 }
